@@ -1,0 +1,450 @@
+[⬅ Back : Design](../DOCS/Design%20Philosophy) | [Main Repository](../README.md) | [ Next : Selection ➡ ](../DOCS/Component%20Selection%20Logic)
+
+# Hardware Overview
+
+A drone may look simple from outside, but in reality it is a combination of multiple systems working together continuously during flight. Every component affects the behavior of the drone in some way, whether it is stability, responsiveness, flight time, payload capacity, reliability, or overall handling.
+
+Before building the drone, it is important to understand the role of each component and how they interact with each other.
+
+---
+
+## Frame
+
+The frame acts as the structural body of the drone. It holds all the components together including:
+
+- Motors
+- ESCs
+- Flight controller
+- Battery
+- Receiver
+- Additional electronics
+
+Frames are available in different:
+
+- Sizes
+- Materials
+- Layouts
+- Configurations
+
+For this platform, a Q450 frame is used because it is:
+
+- Cheap
+- Durable
+- Spacious
+- Beginner friendly
+- Easy to repair and modify
+
+The “450” in Q450 roughly refers to the motor-to-motor diagonal distance in millimeters.
+
+### Larger Frames Generally:
+
+- Fly smoother
+- Feel more stable
+- Provide more room for wiring and electronics
+- Carry payload more easily
+- Make troubleshooting easier
+
+The additional internal space becomes very useful while:
+
+- Learning wiring
+- Replacing components
+- Testing hardware
+- Performing modifications
+
+Since this platform is focused on learning and experimentation, a larger and more practical frame makes much more sense compared to compact aggressive frames.
+
+---
+
+## Motors
+
+Brushless DC motors (BLDC motors) are responsible for generating thrust and lifting the drone into air. Every motor spins a propeller, and together they control the movement, stability, and responsiveness of the drone.
+
+One of the most important motor specifications is the KV rating.
+
+KV basically refers to:
+
+- RPM produced per volt without load
+
+Different KV motors were tested on this platform before selecting the final setup.
+
+Initially, generic A2212 1000KV motors were considered because they provide high torque and can handle larger propellers efficiently. They are smooth and stable, but the lower RPM limits the available speed headroom during aggressive flight or future tuning improvements.
+
+On the other side, higher KV motors like 2200KV provide significantly higher RPM and much faster response, but they are not ideal for larger propellers on regular drone platforms. They heat up quickly under load, struggle with bigger props, and are generally better suited for lightweight racing drones.
+
+After multiple tests, A2212 1400KV motors turned out to be one of the most balanced choices for this platform. They provided:
+
+- Good torque
+- Sufficient RPM
+- Stable handling
+- Decent speed
+- Smooth flight characteristics
+
+The motors were mainly paired with 8045 propellers, which provided a very balanced combination of:
+
+- Lift
+- Efficiency
+- Responsiveness
+- Controllability
+
+This setup gave the drone good speed while still keeping the flight behavior stable and manageable.
+
+However, the generic A2212 motors had one major issue during extended testing:
+
+- Excessive heating
+
+While the performance itself was good, the thermal handling of these motors was not ideal for repeated testing and longer flight sessions.
+
+To solve this, the setup was later upgraded to DJI 1500KV motors.
+
+Compared to the generic motors, the DJI motors had:
+
+- Significantly better build quality
+- Stronger enclosure
+- More metal mass
+- Better heat handling capability
+
+The additional metal body acted like a larger heat sink, allowing the motors to absorb and dissipate heat much more effectively during flight.
+
+This improved:
+
+- Thermal stability
+- Reliability
+- Sustained performance
+- Long-duration testing capability
+
+So while generic motors are excellent for learning and early experimentation because of their low cost and availability, better-built motors become very important once reliability and thermal performance start mattering more.
+
+---
+
+## ESCs (Electronic Speed Controllers)
+
+ESCs control the speed of the motors by regulating power delivery from the battery.
+
+Each motor requires its own ESC, meaning a quadcopter uses four ESCs in total.
+
+Initially, inexpensive SimonK 30A ESCs were used because they are:
+
+- Cheap
+- Easily available
+- Commonly recommended for beginner builds
+
+While they worked for basic operation, several practical issues appeared during testing.
+
+The ESCs introduced:
+
+- Noticeable signal lag
+- Slower motor response
+- Frequent motor desynchronization
+
+This became especially problematic with FPV-style flight controllers, which generate very fast and accurate PWM signals. The older SimonK ESCs struggled to keep up with rapid throttle corrections and fast control updates.
+
+As a result:
+
+- Motors occasionally desynced
+- Flight stability suffered
+- Aggressive corrections became unreliable
+
+The drone could technically fly, but the overall confidence and stability were not good enough.
+
+To solve this issue, the setup was upgraded directly to a SpeedyBee 60A 4-in-1 ESC.
+
+This upgrade completely changed the flight behavior of the drone.
+
+Motor response became:
+
+- Smoother
+- Faster
+- More synchronized
+- Significantly more reliable
+
+In fact, the drone achieved its first proper stable flight using this ESC setup.
+
+However, the SpeedyBee ESC was still relatively expensive.
+
+Later, another ESC was tested:
+
+- JHEMCU 40A 4-in-1 ESC
+
+Surprisingly, it delivered performance very close to the SpeedyBee ESC while:
+
+- Costing almost half the price
+- Being physically smaller
+- Remaining highly reliable
+
+The JHEMCU ESC cost around ₹2600 and eventually became the preferred ESC for this platform because it provided one of the best balances between:
+
+- Price
+- Size
+- Reliability
+- Performance
+
+One interesting observation during testing was that the older SimonK ESCs actually worked much better with Pixhawk systems. Pixhawk handled these slower ESCs far more comfortably compared to fast FPV-style flight controllers.
+
+This showed how compatibility between:
+
+- ESCs
+- Flight controllers
+- Firmware
+- Signal protocols
+
+can heavily affect the overall behavior and reliability of the drone.
+
+## Propellers
+
+Propellers convert motor rotation into thrust.
+
+Even small changes in propeller size or design can heavily affect:
+
+- Stability
+- Efficiency
+- Responsiveness
+- Flight time
+- Lifting capability
+
+The setup mainly used 8045 propellers because they provided a very balanced flight experience for the selected motor configuration.
+
+The “8045” specification roughly refers to:
+
+- 8-inch diameter
+- 4.5-inch pitch
+
+This combination worked well because it provided:
+
+- Good lift
+- Stable flight behavior
+- Decent speed
+- Manageable current consumption
+
+### Larger Propellers Generally:
+
+- Improve stability
+- Generate more lift
+- Increase efficiency
+
+### Smaller Propellers Generally:
+
+- Respond faster
+- Feel more aggressive
+- Suit racing applications better
+
+Propeller balancing is also extremely important because unbalanced propellers introduce vibrations that can:
+
+- Disturb sensor readings
+- Affect PID tuning
+- Reduce stability
+- Increase motor stress
+
+---
+
+## Battery
+
+The battery is the main power source of the drone and directly affects:
+
+- Flight time
+- Stability
+- Responsiveness
+- Payload capability
+- Overall flight behavior
+
+Most drones use Lithium Polymer (LiPo) batteries because they can deliver:
+
+- Very high current
+- Lightweight power storage
+- Fast response under load
+
+For this platform, a **5200mAh 3S 40C LiPo battery** is currently used.
+
+This battery configuration provided a very good balance between:
+
+- Flight time
+- Weight
+- Stability
+- Power delivery
+
+During continuous hover and maneuvering tests, this setup is currently giving around:
+
+- **15 minutes of flight time**
+
+which is very practical for testing, tuning, learning, and general experimentation.
+
+---
+
+### Understanding S Rating
+
+The “S” rating refers to the number of cells connected in series inside the battery.
+
+Each LiPo cell has:
+
+- Nominal voltage of around 3.7V
+- Fully charged voltage of around 4.2V
+
+So for a:
+
+- **3S battery**
+
+the voltage becomes approximately:
+
+- 3 × 3.7V = 11.1V nominal
+- 3 × 4.2V = 12.6V fully charged
+
+Higher S ratings generally provide:
+
+- More motor RPM
+- Faster response
+- Higher available power
+
+But they also:
+
+- Increase stress on electronics
+- Increase heat generation
+- Require compatible motors and ESCs
+
+For a regular quadcopter platform, 3S provides a very balanced and manageable setup without making the drone overly aggressive.
+
+---
+
+### Understanding mAh Rating
+
+The **5200mAh** specification represents battery capacity.
+
+In simple terms, it tells how much energy the battery can store.
+
+Higher capacity batteries generally:
+
+- Increase flight time
+- Improve endurance
+
+But they also:
+
+- Increase overall weight
+- Reduce agility
+- Increase power demand during flight
+
+A 5200mAh battery works well on larger regular drone platforms because the additional weight is manageable while still giving good flight duration.
+
+---
+
+### Understanding C Rating
+
+The **C rating** represents how quickly the battery can safely deliver current.
+
+For this platform:
+
+- Battery rating = **40C**
+- Capacity = **5200mAh** or **5.2Ah**
+
+Maximum theoretical current output becomes:
+
+```txt
+5.2 × 40 = 208A
+```
+
+So theoretically, this battery can safely deliver up to around:
+
+- **208 amps**
+
+This does not mean the drone constantly uses 208A. It only means the battery is capable of supplying high current whenever required during:
+
+- Rapid throttle changes
+- Sudden maneuvers
+- High motor loads
+
+Higher C ratings generally provide:
+
+- Better voltage stability
+- Reduced voltage sag
+- Stronger throttle response
+
+Lower C rating batteries may:
+
+- Drop voltage under load
+- Heat up more
+- Reduce performance during aggressive throttle usage
+
+For this regular drone platform, 40C provides more than enough current capability while maintaining stable performance during continuous hover and maneuvering.
+
+---
+
+## Flight Controller
+
+The flight controller acts as the brain of the drone. It continuously reads sensor data and adjusts motor speeds to stabilize the drone during flight.
+
+For this platform, experimentation was mainly performed using FPV-style flight controllers instead of traditional drone controllers because they are:
+
+- Cheaper
+- Faster
+- Easier to configure
+- Actively supported
+- More modern in terms of ecosystem and firmware support
+
+Traditional Ardupilot-based boards are still powerful, but many older boards now feel outdated, and newer systems or computers may not always support them conveniently.
+
+Pixhawk remains one of the best dedicated autonomous flight controller platforms because of:
+
+- Reliability
+- Expandability
+- Autonomous capability
+- Ecosystem support
+
+But it is also significantly more expensive compared to FPV-style flight controllers.
+
+The first controller tested on this platform was the HGLRC F7 flight controller based on the STM32 F7 processor series.
+
+STM32 F7 processors are among the highest-performance processors commonly used in FPV flight controllers and provide:
+
+- Fast processing
+- Accurate sensor handling
+- Smoother filtering
+- Stable flight performance
+
+The HGLRC F7 performed extremely well, but its price was relatively high at around ₹5000.
+
+Later, cheaper alternatives were tested including:
+
+- SP Racing boards
+- Radiolink flight controllers
+
+Surprisingly, the Radiolink F4 flight controller delivered performance very close to the HGLRC F7 in terms of:
+
+- Flight stability
+- Sensor accuracy
+- Responsiveness
+
+while costing almost half the price at around ₹2500.
+
+Because of this balance between:
+
+- Affordability
+- Stability
+- Reliability
+- Performance
+
+the Radiolink F4 became the primary flight controller currently used on this platform.
+
+This experimentation also showed that expensive hardware is not always necessary for achieving stable and reliable flight performance on regular drone platforms.
+
+---
+
+## Radio System
+
+The radio system provides communication between the pilot and the drone.
+
+This platform uses the FlySky i6 transmitter and receiver pair because it is:
+
+- Affordable
+- Reliable
+- Beginner friendly
+- Widely available
+- Easy to configure
+
+For a regular drone platform, the FlySky system provides more than enough functionality for:
+
+- Stable control
+- Learning
+- Testing
+- Tuning
+- Experimentation
+
+It also keeps the overall build cost practical while still maintaining dependable communication during flight.
+
+---

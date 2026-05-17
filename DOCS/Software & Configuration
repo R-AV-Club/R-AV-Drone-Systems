@@ -1,0 +1,351 @@
+[⬅ Back : Assembly](../DOCS/Assembly%20&%20Wiring) | [Main Repository](../README.md) | [ Next : Calibration ➡ ](../DOCS/Calibration%20&%20Tuning)
+
+# Software & Configuration
+
+Once the hardware is assembled, the drone still cannot fly properly until the flight controller is configured correctly. This is the stage where the hardware finally starts behaving like an actual drone.
+
+A large number of beginner problems usually happen during configuration rather than assembly. Even perfectly good hardware can behave unpredictably because of:
+
+- Incorrect firmware settings
+- Wrong motor direction
+- Bad calibration
+- Receiver mapping issues
+- ESC protocol mismatch
+- Incorrect flight controller orientation
+
+So configuration should always be done slowly and carefully.
+
+One very important safety rule during the entire setup process:
+
+- Always remove propellers while configuring or testing the drone
+
+Even small mistakes during setup can suddenly spin motors at full speed.
+
+---
+
+## Betaflight Ecosystem
+
+For this platform, Betaflight was mainly used because it is:
+
+- Widely supported
+- Modern
+- Actively maintained
+- Fast
+- Beginner friendly once understood properly
+
+Betaflight is extremely popular in the FPV ecosystem and works very well even for regular drone platforms when stability and responsiveness are required.
+
+Compared to older ecosystems, Betaflight also provides:
+
+- Easier configuration
+- Better UI
+- Faster firmware updates
+- Strong community support
+- Easier troubleshooting
+
+This makes experimentation and repeated testing much easier.
+
+---
+
+## Flashing Firmware & Driver Recovery
+
+Flight controllers require firmware before they can operate properly.
+
+Initially, firmware flashing can feel risky because even small mistakes may make the board appear completely dead.
+
+During early experimentation with Betaflight, the flight controller was accidentally factory reset after clicking the reset FC option inside Betaflight Configurator. After rebooting, the board became completely undetectable by the system.
+
+At first it looked like the flight controller was permanently damaged, but the actual issue was:
+
+- Missing STM32 drivers
+- DFU communication problems
+- Improper USB driver configuration
+
+To recover the board:
+
+- STM32 drivers were reinstalled
+- CP210x drivers were installed
+- Zadig was used for DFU driver setup
+
+After manually entering DFU mode and reflashing firmware, the flight controller came back to life successfully.
+
+Similar detection problems later appeared again while configuring ESC firmware through ESC Configurator.
+
+Since ESC Configurator uses the flight controller as a communication bridge, the FC would sometimes randomly stop getting detected by Windows during configuration sessions.
+
+A tool called:
+
+- RCImpulse Driver Fixer
+
+turned out to be extremely useful because it could reliably detect and reconnect flight controllers that randomly failed to appear in the system.
+
+In practical usage, it almost felt like the software could “wake up” the flight controller back into communication mode.
+
+Experiences like this are very common while experimenting with drone firmware and are a reminder that many “dead” flight controllers are actually recoverable.
+
+---
+
+## ESC Firmware & ESC Configurator
+
+ESC Configurator is used for configuring and flashing ESC firmware.
+
+The two main firmware ecosystems tested on this platform were:
+
+- BLHeli
+- Bluejay
+
+BLHeli is one of the most widely used ESC firmware systems and works very well for most drone ESCs.
+
+Bluejay mainly becomes useful for:
+
+- Smoother operation
+- RPM filtering support
+- Custom startup sounds
+
+And honestly, custom startup sounds are just fun to experiment with during builds.
+
+ESC firmware configuration also allows:
+
+- Motor direction reversal
+- Protocol configuration
+- Startup tuning
+- ESC behavior adjustments
+
+This becomes very useful during tuning and troubleshooting because motor direction can be changed digitally without physically swapping motor wires.
+
+## Receiver Setup & UART Configuration
+
+The FlySky i6 transmitter and receiver pair was used for this platform because it is:
+
+- Affordable
+- Reliable
+- Beginner friendly
+- Widely available
+
+For receiver communication, this platform uses:
+
+- IBUS serial protocol
+
+One major advantage of IBUS is that it carries:
+
+- All 4 stick channels
+- Multiple AUX channels
+
+through a single signal wire.
+
+This keeps the setup:
+
+- Cleaner
+- Simpler
+- Easier to manage
+
+while still supporting around:
+
+- 14 AUX channels
+
+for switches and additional controls.
+
+During setup, UART configuration inside Betaflight becomes extremely important because the receiver will not work unless the correct UART port is configured properly.
+
+One very common beginner issue is:
+
+- Receiver not responding even though wiring is correct
+
+In many cases, the actual problem is simply:
+
+- Incorrect UART selection
+- Serial RX disabled
+- Wrong receiver protocol selection
+
+So receiver setup usually involves repeated testing and configuration changes until proper signal detection is achieved.
+
+Inside Betaflight, stick movement should always be verified before flight because incorrect channel mapping can create:
+
+- Reversed controls
+- Incorrect throttle behavior
+- Unstable flight response
+
+---
+
+## ESC Protocols & Motor Communication
+
+The flight controller communicates with ESCs using different signal protocols.
+
+Older communication protocols include:
+
+- PWM
+- OneShot
+- MultiShot
+
+while newer digital protocols include:
+
+- DShot150
+- DShot300
+- DShot600
+- DShot1200
+
+Older analog protocols work, but they are generally:
+
+- Slower
+- Less accurate
+- More delay-prone
+
+Digital DShot protocols are significantly better because they provide:
+
+- Faster communication
+- More accurate motor control
+- Reduced signal errors
+- Improved synchronization
+
+Higher DShot values generally mean:
+
+- Faster communication speed
+- Quicker motor response
+
+For example:
+
+- DShot150 is slower
+- DShot600 is much faster and more responsive
+
+However, faster protocols also require:
+
+- Compatible ESCs
+- Stable firmware
+- Capable flight controllers
+
+During testing, older SimonK ESCs struggled heavily with fast FPV-style signal updates, which caused:
+
+- Lag
+- Unstable response
+- Motor desync
+
+Modern ESCs handled DShot protocols much more smoothly and significantly improved overall flight stability and responsiveness.
+
+---
+
+## Sensor Calibration
+
+The flight controller depends heavily on proper sensor calibration for stable flight behavior.
+
+Important calibrations include:
+
+- Accelerometer calibration
+- Gyro calibration
+- Level calibration
+
+Improper calibration can cause:
+
+- Drifting
+- Unstable hover
+- Tilted flight behavior
+- Incorrect stabilization response
+
+Calibration should always be performed on a flat and stable surface.
+
+Betaflight also provides some very useful calibration-related features that improve practical flight behavior significantly.
+
+One useful feature is:
+
+- Calibration on arm
+
+This allows the drone to recalibrate small sensor offsets during arming, helping improve stability before takeoff.
+
+Another very useful feature is:
+
+- In-flight calibration
+
+This becomes especially useful when:
+
+- The drone is powered on over uneven ground
+- Small drift offsets appear
+- Transmitter sticks are not perfectly centered
+
+For example, if the drone is initialized while sitting slightly tilted on the ground, the flight controller may incorrectly assume that tilted position is level, causing drift during hover.
+
+In-flight calibration helps re-optimize and re-center the drone during actual flight conditions, reducing:
+
+- Drift
+- Offset errors
+- Incorrect leveling behavior
+
+Similarly, if slight unintended transmitter stick input exists because of imperfect centering, Betaflight can compensate and smooth out those offsets during flight.
+
+Features like these may seem minor initially, but during practical testing they make the drone feel significantly:
+
+- Smoother
+- More stable
+- More predictable
+
+especially during hovering and slow maneuvering.
+
+---
+
+## Flight Modes
+
+Betaflight supports multiple flight modes depending on flying style and experience level.
+
+The primary modes used on this platform are:
+
+- Arm
+- Angle Mode
+
+Instead of keeping Angle Mode on a separate switch, the setup was configured so that:
+
+- Arming the drone automatically enables Angle Mode
+
+This helps avoid situations where the drone accidentally gets armed in full manual mode, which can become dangerous during testing or beginner flights.
+
+Angle Mode is especially useful during:
+
+- Initial flights
+- Hovering
+- Tuning
+- Stable maneuvering
+
+because the drone automatically self-levels itself.
+
+More advanced modes like Horizon or Acro can be explored later once basic flight control becomes comfortable.
+
+---
+
+## Failsafe
+
+Failsafe is one of the most important safety systems in any drone.
+
+It defines how the drone behaves if:
+
+- Signal is lost
+- Transmitter disconnects
+- Communication fails
+
+Improper failsafe configuration can easily result in:
+
+- Uncontrolled crashes
+- Flyaways
+- Dangerous situations
+
+Failsafe behavior should always be tested carefully before actual flight.
+
+---
+
+## Initial PID Understanding
+
+Betaflight uses PID control for stabilization.
+
+PID values directly affect:
+
+- Responsiveness
+- Smoothness
+- Stability
+- Oscillation behavior
+
+Poor PID tuning can cause:
+
+- Shaking
+- Oscillations
+- Sluggish movement
+- Unstable flight
+
+Fortunately, modern Betaflight default PID values are already surprisingly good for beginner platforms, making the initial setup process much easier compared to older drone ecosystems.
+
+---

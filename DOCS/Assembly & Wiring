@@ -1,0 +1,202 @@
+[⬅ Back : Selection](../DOCS/Component%20Selection%20Logic) | [Main Repository](../README.md) | [ Next : Software ➡ ](../DOCS/Software%20&%20Configuration)
+
+# Assembly & Wiring
+
+Once all the components are selected, the next step is assembling the drone properly. A large number of drone problems actually begin during assembly itself due to:
+
+- Poor wiring
+- Loose mounting
+- Weak solder joints
+- Vibrations
+- Incorrect component placement
+
+So while building, the focus should not only be making the drone work, but also making it:
+
+- Clean
+- Reliable
+- Repairable
+- Safe to troubleshoot later
+
+---
+
+## Before Starting Assembly
+
+Before connecting anything, it is important to:
+
+- Verify component compatibility
+- Check voltage ratings
+- Organize screws and hardware
+- Plan wire routing
+- Inspect components for damage
+
+One very important safety rule during setup and testing is:
+
+- Always remove propellers while configuring the drone
+
+Many beginners skip this and accidentally arm the motors during setup, which can become dangerous very quickly.
+
+---
+
+## Frame Assembly
+
+The frame should be assembled tightly and evenly because loose structures introduce vibrations and instability during flight.
+
+While assembling the frame:
+
+- Arms should be tightened properly
+- Frame alignment should be checked
+- Loose joints should be avoided
+
+Even small vibrations from loose frame parts can affect:
+
+- Sensor readings
+- Flight stability
+- PID tuning
+
+Larger frames like the Q450 are easier to work with because they provide enough space for:
+
+- Wiring
+- Mounting electronics
+- Troubleshooting
+- Future modifications
+
+---
+
+## Motor Mounting
+
+Motor installation looks simple, but incorrect mounting can damage motors very easily.
+
+One important thing while mounting motors is screw length.
+
+If screws are too long, they can touch the internal motor windings and permanently damage the motor.
+
+Motors should also be mounted securely because loose motors create:
+
+- Vibrations
+- Unstable flight behavior
+- Inconsistent thrust
+
+Motor wire routing should be planned carefully to avoid:
+
+- Propeller contact
+- Excessive bending
+- Wire stress during crashes
+
+---
+
+## ESC Installation
+
+ESC placement affects:
+
+- Cooling
+- Wiring cleanliness
+- Maintenance accessibility
+
+During testing, cleaner ESC layouts made troubleshooting significantly easier later.
+
+Older individual ESC setups required:
+
+- Longer wiring
+- More solder joints
+- Additional space
+
+Modern 4-in-1 ESCs simplified the build considerably by:
+
+- Reducing wiring clutter
+- Improving compactness
+- Simplifying maintenance
+
+ESC airflow is also important because overheating can reduce reliability during continuous hovering or aggressive maneuvering.
+
+---
+
+## Power Distribution & XT60 Connections
+
+The power system is one of the most critical parts of the drone.
+
+Poor soldering in high-current areas can create:
+
+- Voltage drops
+- Overheating
+- Unstable behavior
+- Sudden power loss
+
+XT60 connectors and battery leads should always have:
+
+- Strong solder joints
+- Proper insulation
+- Secure mounting
+
+Cold solder joints may sometimes work initially but fail later during high current loads or vibrations.
+
+During assembly, keeping power wires short and clean also helps reduce:
+
+- Wiring mess
+- Resistance
+- Unnecessary weight
+
+---
+
+## Flight Controller Mounting
+
+The flight controller should be mounted carefully because it continuously reads vibration-sensitive sensor data.
+
+Excessive vibration reaching the flight controller can create:
+
+- Unstable flight
+- Poor PID behavior
+- Drifting
+- Noisy sensor readings
+
+Soft mounting helps reduce vibration transfer from the frame to the sensors.
+
+Correct orientation is also extremely important. Even small mounting orientation mistakes can completely affect stabilization behavior.
+
+---
+
+## Wiring Management
+
+Good wiring management makes a huge difference during troubleshooting and maintenance.
+
+Messy wiring increases the chances of:
+
+- Loose connections
+- Propeller wire strikes
+- Electrical noise
+- Difficult repairs
+
+Clean routing also improves airflow and overall reliability.
+
+Simple things like:
+
+- Zip ties
+- Heat shrink
+- Wire sleeves
+- Proper wire length
+
+make the drone much easier to maintain later.
+
+---
+
+## First Power-Up & Safety Checks
+
+The first power-up should always be done carefully.
+
+Before connecting the battery:
+
+- Inspect all solder joints
+- Check polarity
+- Verify no wires are touching
+- Confirm there are no loose screws
+
+Using a smoke stopper during the first power-up is highly recommended because it can help prevent major damage if a short circuit exists.
+
+The drone should first be tested:
+
+- Without propellers
+- One component at a time
+- With slow verification steps
+
+Motor directions, receiver response, and flight controller behavior should all be checked carefully before attempting the first flight.
+
+---

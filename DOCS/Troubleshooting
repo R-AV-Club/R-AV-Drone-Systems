@@ -1,0 +1,204 @@
+[⬅ Back : Calibration](../DOCS/Calibration%20&%20Tuning) | [Main Repository](../README.md)
+
+# Testing & Troubleshooting
+
+Even after successful assembly, configuration, and tuning, a drone should never be trusted immediately for aggressive flight. Real-world testing is where most hidden issues finally start appearing.
+
+Things that look perfectly fine on the bench can behave completely differently once the drone is actually in air.
+
+Because of this, testing should always be gradual and controlled.
+
+The goal during early testing is not:
+
+- Speed
+- Aggressive maneuvers
+- Long flights
+
+The goal is simply:
+
+- Stability
+- Predictability
+- Reliability
+
+---
+
+## Initial Flight Testing
+
+The first flights should always be:
+
+- Low altitude
+- Short duration
+- Slow and controlled
+
+Initial hover tests are extremely useful because they immediately reveal:
+
+- Drift
+- Oscillation
+- Incorrect motor direction
+- Unstable tuning
+- Excessive vibration
+- Poor throttle response
+
+Aggressive throttle inputs during first flights usually make troubleshooting much harder because multiple issues appear simultaneously.
+
+Slow hover testing gives enough time to observe how the drone naturally behaves.
+
+---
+
+## Common Beginner Problems
+
+One of the most common beginner issues is:
+
+- Immediate flipping during takeoff
+
+This usually happens because of:
+
+- Incorrect motor direction
+- Incorrect propeller orientation
+- Wrong motor order mapping inside Betaflight
+
+Another very common issue is:
+
+- Unstable hovering or drifting
+
+This is often caused by:
+
+- Poor calibration
+- Tilted initialization surface
+- Vibration issues
+- Loose frame structure
+
+Sometimes the drone may also feel:
+
+- Sluggish
+- Delayed
+- Inconsistent
+
+During testing, older SimonK ESCs showed noticeable lag and synchronization problems with fast FPV flight controllers, which caused unstable behavior during throttle corrections.
+
+Modern ESCs solved most of these problems immediately.
+
+---
+
+## Thermal Problems
+
+Heat became one of the biggest practical observations during repeated testing.
+
+Generic A2212 motors initially performed well, but during:
+
+- Continuous hovering
+- Repeated maneuvering
+- Longer flight sessions
+
+they became extremely hot.
+
+This showed that short successful flights do not always represent long-term reliability.
+
+The upgraded DJI motors handled heat significantly better because of:
+
+- Stronger construction
+- Larger metal body
+- Better heat dissipation
+
+ESC temperature also became important during aggressive throttle usage. Poor airflow or overloaded systems can quickly increase ESC temperatures and reduce reliability.
+
+Battery temperature is another important indicator. Excessive battery heating usually suggests:
+
+- Excessive current draw
+- Overloaded setup
+- Inefficient tuning
+- Power system imbalance
+
+---
+
+## Electrical & Wiring Problems
+
+Many random drone issues actually originate from wiring problems rather than software.
+
+Poor solder joints can create:
+
+- Unstable power delivery
+- Sudden shutdowns
+- Voltage drops
+- Random instability
+
+Loose connectors and poorly managed wiring can also create intermittent problems that become extremely difficult to diagnose later.
+
+During repeated testing and crashes, wires should always be inspected for:
+
+- Cuts
+- Loose solder joints
+- Insulation damage
+- Connector looseness
+
+Simple wiring mistakes can sometimes behave like major hardware failures.
+
+## Firmware & Driver Problems
+
+One unexpected area of troubleshooting during development was firmware and driver recovery.
+
+At one point, the flight controller appeared completely dead after an accidental factory reset inside Betaflight.
+
+The actual problem turned out to be:
+
+- Missing STM32 drivers
+- DFU communication issues
+- Incorrect USB driver handling
+
+Using:
+
+- Zadig
+- STM32 drivers
+- CP210x drivers
+
+allowed the board to enter DFU mode again and successfully recover through firmware reflashing.
+
+Later, ESC Configurator sessions occasionally caused the flight controller to randomly stop getting detected by Windows again.
+
+The RCImpulse Driver Fixer tool turned out to be extremely useful during these situations because it could reliably reconnect flight controllers that appeared completely undetectable.
+
+Experiences like this showed that many “dead” flight controllers are actually recoverable if the firmware and driver ecosystem is understood properly.
+
+---
+
+## Diagnosing Flight Behavior
+
+One of the most useful things learned during testing was that drone behavior itself usually gives clues about the actual problem.
+
+For example:
+
+- Immediate flipping during takeoff usually indicates motor direction or propeller issues.
+- Constant drifting usually points toward calibration or leveling problems.
+- Rapid oscillation often indicates vibration problems or aggressive PID behavior.
+- Sluggish response may indicate ESC communication delay or incorrect protocol settings.
+- Excessive motor heat may indicate overloaded propellers, poor tuning, or excessive vibration.
+- Random instability during maneuvering may indicate loose wiring or synchronization issues.
+
+Over time, troubleshooting becomes less about guessing and more about observing how the drone behaves physically.
+
+---
+
+## Crash Learning
+
+Crashes are a completely normal part of drone development and experimentation.
+
+Even small crashes can create hidden issues such as:
+
+- Bent propellers
+- Loose motors
+- Damaged wires
+- Cracked frames
+- Shifted flight controllers
+
+Sometimes the drone may still fly after a crash but feel slightly unstable because of tiny physical damage that is not immediately visible.
+
+Because of this, every crash should be followed by:
+
+- Frame inspection
+- Motor inspection
+- Propeller inspection
+- Wiring checks
+- Recalibration if necessary
+
+Repeated testing showed that patient troubleshooting and gradual improvements are far more effective than trying to solve every problem aggressively at once.
+

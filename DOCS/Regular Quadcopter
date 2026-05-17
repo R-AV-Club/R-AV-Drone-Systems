@@ -1,0 +1,17 @@
+[⬅ Back : Main Repository](../README.md) | [ Next : Design ➡ ](../DOCS/Design%20Philosophy)
+
+# Regular BLDC Drone Platform
+
+## Introduction
+
+This section is focused on building and understanding a regular BLDC drone platform from scratch. Not just assembling parts together, but actually understanding why each component exists, how the system works as a whole, and what actually affects the drone during real flight conditions.
+
+This drone acts as my primary testing and experimentation platform. Most trials, tuning, upgrades, failures, and future autonomous developments start from this base system. Because of that, the focus here is stability, modularity, experimentation, and practical learning rather than extreme speed or aggressive performance.
+
+So this section is written more like an engineering journey and practical guide rather than a simple step-by-step tutorial.
+
+The goal of this section is simple:
+
+> Build a reliable drone platform, understand it deeply, and use it as the foundation for everything that comes next.
+
+---
