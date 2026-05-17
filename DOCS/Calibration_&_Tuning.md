@@ -1,4 +1,4 @@
-[⬅ Back : Software](../DOCS/Software%20&%20Configuration) | [Main Repository](../README.md) | [ Next : Troubleshooting ➡ ](../DOCS/Calibration%20&%20Tuning)
+[⬅ Back : Software](../DOCS/Software_&_Configuration.md) | [Main Repository](../README.md) | [ Next : Troubleshooting ➡ ](../DOCS/Troubleshooting.md)
 
 # Calibration & Tuning
 

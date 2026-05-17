@@ -1,4 +1,4 @@
-[⬅ Back : Main Repository](../README.md) | [ Next : Design ➡ ](../DOCS/Design%20Philosophy)
+[⬅ Back : Main Repository](../README.md) | [ Next : Design ➡ ](../DOCS/Design_Philosophy.md)
 
 # Regular BLDC Drone Platform
 

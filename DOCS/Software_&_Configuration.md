@@ -1,4 +1,4 @@
-[⬅ Back : Assembly](../DOCS/Assembly%20&%20Wiring) | [Main Repository](../README.md) | [ Next : Calibration ➡ ](../DOCS/Calibration%20&%20Tuning)
+[⬅ Back : Assembly](../DOCS/Assembly_&_Wiring.md) | [Main Repository](../README.md) | [ Next : Calibration ➡ ](../DOCS/Calibration_&_Tuning.md)
 
 # Software & Configuration
 

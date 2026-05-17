@@ -1,4 +1,4 @@
-[⬅ Back : Selection](../DOCS/Component%20Selection%20Logic) | [Main Repository](../README.md) | [ Next : Software ➡ ](../DOCS/Software%20&%20Configuration)
+[⬅ Back : Selection](../DOCS/Component_Selection_Logic.md) | [Main Repository](../README.md) | [ Next : Software ➡ ](../DOCS/Software_&_Configuration.md)
 
 # Assembly & Wiring
 

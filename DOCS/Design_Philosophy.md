@@ -1,4 +1,4 @@
-[⬅ Back : Regular Quadcopter](../DOCS/Regular%20Quadcopter) | [Main Repository](../README.md) | [ Next : Hardware ➡ ](../DOCS/Hardware%20Overview)
+[⬅ Back : Regular Quadcopter](../DOCS/Regular_Quadcopter.md) | [Main Repository](../README.md) | [ Next : Hardware ➡ ](../DOCS/Hardware_Overview.md)
 
 # Design Philosophy
 

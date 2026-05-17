@@ -1,4 +1,4 @@
-[⬅ Back : Design](../DOCS/Design%20Philosophy) | [Main Repository](../README.md) | [ Next : Selection ➡ ](../DOCS/Component%20Selection%20Logic)
+[⬅ Back : Design](../DOCS/Design_Philosophy.md) | [Main Repository](../README.md) | [ Next : Selection ➡ ](../DOCS/Component_Selection_Logic.md)
 
 # Hardware Overview
 

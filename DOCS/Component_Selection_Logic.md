@@ -1,4 +1,4 @@
-[⬅ Back : Hardware](../DOCS/Hardware%20Overview) | [Main Repository](../README.md) | [ Next : Assembly ➡ ](../DOCS/Assembly%20&%20Wiring)
+[⬅ Back : Hardware](../DOCS/Hardware_Overview.md) | [Main Repository](../README.md) | [ Next : Assembly ➡ ](../DOCS/Assembly_&_Wiring.md)
 
 # Component Selection Logic
 
